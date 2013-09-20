@@ -1,0 +1,14 @@
+﻿<div class="modal-header">
+    <h2>Nouvel évènement</h2>
+</div>
+
+<div class="modal-body">
+  <form>
+    <textarea ng-model="text" rows="5" class="input-xlarge" placeholder="Texte de la note" required></textarea>
+  </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="validate()"><i class="icon-ok icon-white"></i> Valider</button>
+    <button class="btn btn-warning" ng-click="cancel()"><i class="icon-remove icon-white"></i> Annuler</button>
+</div>

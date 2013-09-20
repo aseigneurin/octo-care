@@ -1,0 +1,13 @@
+﻿<div class="octoList">
+
+  <h2 class="title">Choisissez un Octo !</h2>
+
+  <table class="table table-striped table-hover">
+    <tr ng-repeat="octo in octos | orderBy:'name'" ng-click="openDetail(octo)">
+      <td>
+        <a>{{octo.name}}</a>
+      </td>
+    </tr>
+  </table>
+
+</div>
