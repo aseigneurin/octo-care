@@ -1,4 +1,7 @@
 .*
-target/
-node_modules/
-build/
+
+front-end/node_modules/
+front-end/build/
+
+back-end/target/
+back-end/src/main/webapp/WEB-INF/lib/
