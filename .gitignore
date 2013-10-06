@@ -1,7 +1,5 @@
 .*
-
-front-end/node_modules/
-front-end/build/
+node_modules/
 
 back-end/target/
 back-end/src/main/webapp/WEB-INF/lib/

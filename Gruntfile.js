@@ -1,3 +1,6 @@
+var srcDir = 'front-end/src';
+var buildDir = 'back-end/src/main/webapp';
+
 module.exports = function(grunt) {
 
   // configure the tasks
@@ -5,21 +8,21 @@ module.exports = function(grunt) {
 
     clean: {
       build: {
-        src: ['build']
+        src: [buildDir + '/*.html', buildDir + '/css', buildDir + '/js', buildDir + '/partials']
       },
       stylesheets: {
-        src: ['build/**/*.css', '!build/css/application.css']
+        src: [buildDir + '/**/*.css', '!' + buildDir + '/css/application.css']
       },
       scripts: {
-        src: ['build/**/*.js', '!build/js/application.js']
+        src: [buildDir + '/**/*.js', '!' + buildDir + '/js/application.js']
       },
     },
 
     copy: {
       build: {
-        cwd: 'src',
+        cwd: srcDir,
         src: ['**'],
-        dest: 'build',
+        dest: buildDir,
         expand: true
       },
     },
@@ -27,13 +30,13 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         files: {
-          'build/css/application.css': ['build/**/*.css']
+          'back-end/src/main/webapp/css/application.css': [buildDir + '/**/*.css']
         }
       },
     },
 
     jshint: {
-      files: ['src/**/*.js'],
+      files: [srcDir + '/**/*.js'],
     },
 
     uglify: {
@@ -42,22 +45,22 @@ module.exports = function(grunt) {
           mangle: false
         },
         files: {
-          'build/js/application.js': ['build/**/*.js']
+          'back-end/src/main/webapp/js/application.js': [buildDir + '/**/*.js']
         }
       }
     },
 
     watch: {
       stylesheets: {
-        files: 'src/**/*.css',
+        files: srcDir + '/**/*.css',
         tasks: ['stylesheets']
       },
       scripts: {
-        files: 'src/**/*.js',
+        files: srcDir + '/**/*.js',
         tasks: ['scripts']
       },
       copy: {
-        files: ['src/**/*', '!src/**/*.css', '!src/**/*.js'],
+        files: [srcDir + '/**/*', '!src/**/*.css', '!src/**/*.js'],
         tasks: ['copy']
       }
     },
@@ -66,7 +69,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 4000,
-          base: 'build',
+          base: buildDir,
           hostname: '*'
         }
       }
