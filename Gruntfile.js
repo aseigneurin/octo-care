@@ -21,22 +21,22 @@ module.exports = function(grunt) {
     copy: {
       build: {
         cwd: srcDir,
-        src: ['**'],
+        src: ['**', '!**/*.css', '!**/*.js'],
         dest: buildDir,
         expand: true
-      },
+      }
     },
 
     cssmin: {
       build: {
         files: {
-          'back-end/src/main/webapp/css/application.css': [buildDir + '/**/*.css']
+          'back-end/src/main/webapp/css/application.css': [srcDir + '/**/*.css']
         }
       },
     },
 
     jshint: {
-      files: [srcDir + '/**/*.js'],
+      files: [srcDir + '/**/*.js']
     },
 
     uglify: {
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
           mangle: false
         },
         files: {
-          'back-end/src/main/webapp/js/application.js': [buildDir + '/**/*.js']
+          'back-end/src/main/webapp/js/application.js': [srcDir + '/**/*.js']
         }
       }
     },
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         tasks: ['scripts']
       },
       copy: {
-        files: [srcDir + '/**/*', '!src/**/*.css', '!src/**/*.js'],
+        files: [srcDir + '/**/*', '!' + srcDir + '/**/*.css', '!' + srcDir + '/**/*.js'],
         tasks: ['copy']
       }
     },
@@ -94,12 +94,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask(
     'stylesheets',
-    'Compiles the stylesheets.', ['cssmin', 'clean:stylesheets']
+    'Compiles the stylesheets.', ['cssmin']
   );
 
   grunt.registerTask(
     'scripts',
-    'Compiles the JavaScript files.', ['jshint', 'uglify', 'clean:scripts']
+    'Compiles the JavaScript files.', ['jshint', 'uglify']
   );
 
   grunt.registerTask(

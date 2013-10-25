@@ -16,6 +16,8 @@ public class Event {
     @Parent
     private Ref<Octo> octo;
 
+    private Ref<Hexa> author;
+
     private Date date;
 
     private String text;
@@ -34,6 +36,14 @@ public class Event {
 
     public void setOcto(Ref<Octo> octo) {
         this.octo = octo;
+    }
+
+    public Ref<Hexa> getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Ref<Hexa> author) {
+        this.author = author;
     }
 
     public Date getDate() {

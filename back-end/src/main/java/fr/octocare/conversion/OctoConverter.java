@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fr.octocare.dto.EventDTO;
+import fr.octocare.dto.HexaDTO;
 import fr.octocare.dto.OctoDTO;
 import fr.octocare.entity.Event;
 import fr.octocare.entity.Octo;
@@ -40,7 +41,8 @@ public class OctoConverter {
 
     public static EventDTO convertEntityToDTO(Event event, String format) {
 
-        EventDTO res = new EventDTO(event.getId(), event.getDate(), event.getText());
+        HexaDTO reporterDTO = HexaConverter.convertEntityToDTO(event.getAuthor().get(), "simple");
+        EventDTO res = new EventDTO(reporterDTO, event.getId(), event.getDate(), event.getText());
         return res;
     }
 }

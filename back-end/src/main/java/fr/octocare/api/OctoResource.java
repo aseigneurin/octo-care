@@ -12,8 +12,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.googlecode.objectify.Ref;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.googlecode.objectify.Ref;
+import com.sun.jersey.api.spring.Autowire;
+
+import fr.octocare.api.security.RequireUser;
 import fr.octocare.conversion.OctoConverter;
 import fr.octocare.dataAccess.OctoDAO;
 import fr.octocare.dto.EventDTO;
@@ -22,14 +27,17 @@ import fr.octocare.entity.Event;
 import fr.octocare.entity.Octo;
 
 @Path("octo")
+@Component
+@Autowire
+@RequireUser
 public class OctoResource {
 
-    static OctoDAO octoDAO = new OctoDAO();
+    @Autowired
+    private OctoDAO octoDAO;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOctos() {
-
         List<Octo> octos = octoDAO.getOctos();
         List<OctoDTO> res = OctoConverter.convertOctoEntitiesToDTOs(octos, "list");
         return Response.ok(res).build();
@@ -39,7 +47,6 @@ public class OctoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOcto(@PathParam("uid") String octoUid) {
-
         Octo res = octoDAO.getOcto(octoUid);
         return Response.ok(res).build();
     }
@@ -48,7 +55,6 @@ public class OctoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHistory(@PathParam("uid") String octoUid) {
-
         Octo octo = octoDAO.getOcto(octoUid);
         List<Event> octos = octoDAO.getEvents(octo);
         List<EventDTO> res = OctoConverter.convertEventEntitiesToDTOs(octos, "list");
@@ -59,7 +65,6 @@ public class OctoResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveEvent(@PathParam("uid") String octoUid, EventDTO eventDTO) {
-
         Octo octo = octoDAO.getOcto(octoUid);
 
         Event event = new Event();

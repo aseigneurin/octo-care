@@ -2,13 +2,11 @@ package fr.octocare.dto;
 
 import java.util.Date;
 
-import fr.octocare.entity.Octo;
-
 public class EventDTO {
 
     private String id;
 
-    private Octo octo;
+    private HexaDTO author;
 
     private Date date;
 
@@ -17,7 +15,8 @@ public class EventDTO {
     public EventDTO() {
     }
 
-    public EventDTO(String id, Date date, String text) {
+    public EventDTO(HexaDTO author, String id, Date date, String text) {
+        this.author = author;
         this.id = id;
         this.date = date;
         this.text = text;
@@ -31,12 +30,12 @@ public class EventDTO {
         this.id = id;
     }
 
-    public Octo getOcto() {
-        return octo;
+    public HexaDTO getAuthor() {
+        return author;
     }
 
-    public void setOcto(Octo octo) {
-        this.octo = octo;
+    public void setAuthor(HexaDTO author) {
+        this.author = author;
     }
 
     public Date getDate() {

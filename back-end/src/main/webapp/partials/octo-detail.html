@@ -1,8 +1,12 @@
 ﻿<div class="octoDetail">
 
 	<div class="buttons">
-		<a ng-click="createEvent()" class="btn btn-success"><i class="icon-plus icon-white"></i> Nouvel note</a>
-		<a href="#" class="btn btn-info"><i class="icon-list icon-white"></i> Retour à la liste</a>
+		<a ng-click="createEvent()" class="btn btn-success"> <i class="icon-plus icon-white"></i>
+			Nouvel note
+		</a>
+		<a href="#" class="btn btn-info"> <i class="icon-list icon-white"></i>
+			Retour à la liste
+		</a>
 	</div>
 	<h2 class="title">{{octo.name}}</h2>
 
@@ -15,8 +19,12 @@
 		<tr ng-repeat="event in history | orderBy:'date':true" class="{{ event.highlight }}">
 			<td>{{ event.date | date:'dd/MM/yyyy à HH:mm' }}</td>
 			<td>{{ event.text }}</td>
-			<td>{{ event.author }}</td>
+			<td>
+				<span tooltip-placement="bottom" tooltip="{{ event.author.email }}">{{ event.author.name }}</span>
+			</td>
 		</tr>
 	</table>
+
+	<a href="/web/logout">Se déconnecter</a>
 
 </div>

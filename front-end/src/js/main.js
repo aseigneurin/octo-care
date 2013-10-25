@@ -3,6 +3,10 @@ angular.module("octoCare", ["ui.bootstrap"])
         function($routeProvider) {
             $routeProvider.
             when("", {
+                templateUrl: "partials/authentication.html",
+                controller: AuthenticationCtrl
+            }).
+            when("/list", {
                 templateUrl: "partials/octo-list.html",
                 controller: OctoListCtrl
             }).
@@ -15,6 +19,18 @@ angular.module("octoCare", ["ui.bootstrap"])
             });
         }
     ]);
+
+var AuthenticationCtrl = function($scope, $http) {
+
+    $http.get("api/hexa/current").success(function(data) {
+        $scope.hexa = data;
+        if ($scope.hexa.id !== undefined) {
+            window.location = "#/list";
+        }
+    }).error(function(data, status, headers, config) {
+        alert("Failed loading the current Hexa...");
+    });
+};
 
 var OctoListCtrl = function($scope, $http) {
 
