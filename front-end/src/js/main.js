@@ -1,4 +1,4 @@
-angular.module("octoCare", ["ui.bootstrap"])
+angular.module("octoCare", ["ui.bootstrap", "angulartics", "angulartics.google.analytics"])
     .config(["$routeProvider",
         function($routeProvider) {
             $routeProvider.
