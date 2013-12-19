@@ -10,7 +10,7 @@
 
     <properties>
         <appengine.app.version>1</appengine.app.version>
-        <appengine.target.version>1.8.5</appengine.target.version>
+        <appengine.target.version>1.8.6</appengine.target.version>
         <jersey.version>1.17.1</jersey.version>
         <jackson.version>1.9.11</jackson.version>
         <spring.version>3.2.3.RELEASE</spring.version>
